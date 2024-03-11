@@ -1,43 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<link rel="stylesheet" href="style.css" />
-<script type="text/javascript" src="jquery.js"></script>
-<script type="text/javascript" src="barcode.js"></script>
-
-<script type="text/javascript">
-
-var sound = new Audio("barcode.wav");
-
-$(document).ready(function() {
-
-	barcode.config.start = 0.1;
-	barcode.config.end = 0.9;
-	barcode.config.video = '#barcodevideo';
-	barcode.config.canvas = '#barcodecanvas';
-	barcode.config.canvasg = '#barcodecanvasg';
-	barcode.setHandler(function(barcode) {
-		$('#result').html(barcode);
-	});
-	barcode.init();
-
-	$('#result').bind('DOMSubtreeModified', function(e) {
-		sound.play();	
-	});
-
-});
-
-</script>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text to Excel Converter with Barcode Scanner</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<div id="barcode">
-	<video id="barcodevideo" autoplay></video>
-	<canvas id="barcodecanvasg" ></canvas>
-</div>
-<canvas id="barcodecanvas" ></canvas>
-<div id="result"></div>
-
+  <div class="container">
+    <textarea id="textInput" placeholder="Enter text or scan a barcode"></textarea>
+    <button onclick="convertToExcel()">Convert to Excel</button>
+    <div id="barcodeScanner" class="barcode-scanner"></div>
+    <button onclick="selectCamera()">Select Camera</button>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
